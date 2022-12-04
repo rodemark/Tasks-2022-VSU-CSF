@@ -166,9 +166,9 @@ public class JTableUtils {
     ) {
         table.setCellSelectionEnabled(true);
         table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        table.getTableHeader().setReorderingAllowed(false);
-        table.getTableHeader().setResizingAllowed(false);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+        table.getTableHeader().setReorderingAllowed(true);
+        table.getTableHeader().setResizingAllowed(true);
         if (!showColsIndexes && table.getTableHeader() != null) {
             table.getTableHeader().setPreferredSize(new Dimension(0, 0));
         }

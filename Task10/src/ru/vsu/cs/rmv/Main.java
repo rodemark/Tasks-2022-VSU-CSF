@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-
         if(args[0].equals("--window")){
             Utils.winMain();
         }

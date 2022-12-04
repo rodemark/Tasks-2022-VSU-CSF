@@ -3,15 +3,15 @@ package ru.vsu.cs.rmv;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.TableColumn;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import UtilsSolomatin.ArrayUtils;
 import UtilsSolomatin.JTableUtils;
 import UtilsSolomatin.SwingUtils;
-import jdk.jshell.execution.Util;
 
 public class FrameMain extends JFrame{
     private JPanel panelMain;
@@ -30,10 +30,14 @@ public class FrameMain extends JFrame{
         this.setTitle("Task10");
         this.setContentPane(panelMain);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(1280, 720));
         this.pack();
 
-        JTableUtils.initJTableForArray(tableInput, 170, true, true, true, false);
-        JTableUtils.initJTableForArray(tableOutput, 170, true, true, false, false);
+
+        JTableUtils.initJTableForArray(tableInput, 100, true, true, true, false);
+        JTableUtils.initJTableForArray(tableOutput, 200, true, true, false, false);
+        tableInput.getColumnModel().getColumn( 0 ).setWidth( 350 );
+        this.pack();
         tableInput.setRowHeight(30);
         tableOutput.setRowHeight(30);
 
@@ -41,7 +45,6 @@ public class FrameMain extends JFrame{
         fileChooserOpen.setCurrentDirectory(new File("."));
         FileFilter filter = new FileNameExtensionFilter("Text files", "txt");
         fileChooserOpen.addChoosableFileFilter(filter);
-
 
         JMenuBar menuBarMain = new JMenuBar();
         setJMenuBar(menuBarMain);
@@ -51,12 +54,13 @@ public class FrameMain extends JFrame{
         menuBarMain.add(menuLookAndFeel);
         UtilsSolomatin.SwingUtils.initLookAndFeelMenu(menuLookAndFeel);
         JTableUtils.writeArrayToJTable(tableInput, new String[][]{
-                {"Соломатин Дмитрий Ивановивич", "М", "1", "2.1"},
+                {"Соломатин Дмитрий Ивановивич", "М", "1", "2.4"},
                 {"Толкачев Аким Владимирович", "М", "2", "2.1"},
                 {"Лобода Александр Васильевич", "М", "4", "2.2"},
-                {"Каверина Валерия Константиновна", "Ж", "3", "3.7"},
+                {"Каверина Валерия Константиновна", "Ж", "3", "4.0"},
                 {"Вахитова Екатерина Васильевна", "Ж", "4", "4.5"}
         });
+
 
 
         buttonOpenFromFile.addActionListener(new ActionListener() {
@@ -77,6 +81,7 @@ public class FrameMain extends JFrame{
                 }
             }
         });
+
         buttonGetResult.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,8 +90,24 @@ public class FrameMain extends JFrame{
 
                     assert arr != null;
                     ArrayList<ArrayList<String>> lists = Utils.arrayToList(arr);
-                    double fieldPointAverage = Double.parseDouble(textFieldPointAverage.getText());
-                    int minAmountStudents = Integer.parseInt(textFieldMinAmountStudents.getText());
+                    double fieldPointAverage = 0;
+                    int minAmountStudents = 0;
+
+                    try{
+                        fieldPointAverage = Double.parseDouble(textFieldPointAverage.getText());
+                    }
+                    catch (Exception err){
+                        fieldPointAverage = 0;
+                    }
+
+                    try{
+                        minAmountStudents = Integer.parseInt(textFieldMinAmountStudents.getText());
+                    }
+                    catch (Exception err){
+                        minAmountStudents = 0;
+                    }
+
+
 
                     String[][] arr2 = Utils.listToArray(Solution.getListsResult(lists, fieldPointAverage, minAmountStudents));
 
