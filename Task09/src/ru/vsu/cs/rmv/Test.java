@@ -8,42 +8,59 @@ public class Test {
         String path = "/Users/rodemark/Documents/Univer/Introduction-to-programming/Task09/src/input.txt";
         ArrayList<Integer> list = Utils.readListFromFile(path);
 
-        int [] a = new int[list.size()];
+        int sumBack = list.get(0);
+        int indexLeft = 0;
+        int indexRight = 0;
+        int sum = 0;
+        int minPos = -1;
+        int indexLeftBack = 0;
+        int indexRightBack = Integer.MAX_VALUE;
 
-        for(int i = 0; i < list.size(); i++){
-            a[i] = list.get(i);
-        }
+        ArrayList<Integer> result = new ArrayList<>();
 
-        int ans = a[0],
-                ans_l = 0,
-                ans_r = 0,
-                sum = 0,
-                min_sum = 0,
-                min_pos = -1,
-                n = a.length;
+        for (int i = 0; i < list.size(); i++) {
 
-        for (int r = 0; r < n; r++) {
-            sum += a[r];
+            sum += list.get(i);
 
-            int cur = sum - min_sum;
-
-            if (cur > ans) {
-                ans = cur;
-                ans_l = min_pos + 1;
-                ans_r = r;
+            if (sum > sumBack) {
+                sumBack = sum;
+                indexLeft = minPos;
+                indexRight = i;
             }
 
-            if (sum < min_sum) {
-                min_sum = sum;
-                min_pos = r;
+            if (sum == sumBack){
+                indexLeft = minPos;
+                indexRight = i;
+                if (indexRightBack - indexLeftBack < indexRight - indexLeft){
+                    indexLeft = indexLeftBack;
+                    indexRight = indexRightBack;
+                }
+                if (indexRightBack - indexLeftBack == indexRight - indexLeft){
+                    if (indexLeftBack < indexRight){
+                        indexLeft = indexLeftBack;
+                        indexRight = indexRightBack;
+                    }
+                }
+            }
+
+            if (sum < 0) {
+                indexLeftBack = indexLeft;
+                indexRightBack = indexRight;
+                sum = 0;
+                minPos = i;
             }
         }
 
-        System.out.println(list);
-        System.out.println(ans_l);
-        System.out.println(ans_r);
-        System.out.println(sum);
-        System.out.println(min_sum);
-        System.out.println(min_pos);
+        System.out.println(indexLeft);
+        System.out.println(indexRight);
+
+        indexLeft  = indexLeft < 0 ? 0 : indexLeft + 1;
+
+        for(int i = indexLeft ; i < indexRight + 1; i++){
+            result.add(list.get(i));
+        }
+
+        System.out.println(result);
+
     }
 }

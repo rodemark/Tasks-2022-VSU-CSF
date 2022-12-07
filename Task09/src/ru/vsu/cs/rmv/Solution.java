@@ -4,48 +4,59 @@ import java.util.ArrayList;
 
 public class Solution {
     public static ArrayList<Integer> createNewList(ArrayList<Integer> list){
+        int sumBack = list.get(0);
+        int indexLeft = 0;
+        int indexRight = 0;
         int sum = 0;
-        int sumMax = -Integer.MAX_VALUE;
-        int sum1 = 0;
-        int sum2 = 0;
-        int sumBack = 0;
+        int minPos = -1;
+        int indexLeftBack = 0;
+        int indexRightBack = Integer.MAX_VALUE;
 
-        ArrayList<Integer> listResult = new ArrayList<Integer>();
-        ArrayList<Integer> listResult1 = new ArrayList<Integer>();
-        ArrayList<Integer> listResult2 = new ArrayList<Integer>();
-        ArrayList<Integer> subsequence = new ArrayList<Integer>();
-        int index = 0;
+        ArrayList<Integer> listResult = new ArrayList<>();
 
-/*
-        for (int i = 0; i < list.size() - 1; i++){
+        for (int i = 0; i < list.size(); i++) {
+
             sum += list.get(i);
-            subsequence.add(list.get(i));
 
-            if (sum > sumMax){
-                sumMax = sum;
-                listResult = new ArrayList<Integer>(subsequence.size());
-                listResult.addAll(subsequence);
+            if (sum == sumBack){
+                indexLeft = minPos;
+                indexRight = i;
+
+                if (indexRightBack - indexLeftBack < indexRight - indexLeft){
+                    indexLeft = indexLeftBack;
+                    indexRight = indexRightBack;
+                }
+
+                if (indexRightBack - indexLeftBack == indexRight - indexLeft){
+                    if (indexLeftBack < indexRight){
+                        indexLeft = indexLeftBack;
+                        indexRight = indexRightBack;
+                    }
+                }
             }
-        }
 
- */
-
-        for (int i = 0; i < list.size(); i++){
-            sum += list.get(i);
-            subsequence.add(list.get(i));
-
-            if (sum > sumBack){
-                listResult1 = new ArrayList<>();
-                listResult1.addAll(subsequence);
+            if (sum > sumBack) {
+                sumBack = sum;
+                indexLeft = minPos;
+                indexRight = i;
             }
-            else{
-                listResult1 = new ArrayList<>();
+
+
+
+            if (sum < 0) {
+                indexLeftBack = indexLeft;
+                indexRightBack = indexRight;
                 sum = 0;
+                minPos = i;
             }
-
-            sumBack = sum;
         }
-        return listResult1;
+
+        indexLeft  = indexLeft < 0 ? 0 : indexLeft + 1;
+
+        for(int i = indexLeft ; i < indexRight + 1; i++){
+            listResult.add(list.get(i));
+        }
+        return listResult;
     }
 
 }

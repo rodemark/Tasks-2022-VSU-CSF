@@ -1,6 +1,7 @@
 package ru.vsu.cs.rmv;
 
 import java.util.ArrayList;
+//Task9-6
 public class Main {
     public static void main(String[] args) throws Exception {
         if(args[0].equals("--window")){
