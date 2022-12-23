@@ -1,26 +1,53 @@
 package ru.vsu.cs.rmv;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Set;
+import java.util.TreeSet;
 
-import static ru.vsu.cs.rmv.Util.factorial;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
-        String path = args[0];
+    public static void main(String[] args){
+        System.out.println(generate(4));
 
-        ArrayList<Integer> elements = Util.readListFromFile(path);
+    }
+    public static Set<String> da(int n){
+        Set<String> result = new TreeSet<>();
+        for (int i = 0; i <= n; i++){
+            if (i == 0){
+                result.add("");
+            }
+            else{
+                for (String item : generate(n - i)) {
+                    String str1 = "(" + ")" + item;
+                    if (str1.length() == 2 * n){
+                        result.add(str1);
+                    }
+                    String str2 = "(" + ")" + item;
+                    if (str2.length() == 2 * n){
+                        result.add(str2);
+                    }
+                    String str3 = "(" + ")" + item;
+                    if (str3.length() == 2 * n){
+                        result.add(str3);
+                    }
+                }
+            }
 
-        System.out.println(elements);
-
-        final int n = elements.size();
-        final int k = Integer.parseInt(args[1]);
-
-        int c = factorial(n) / (factorial(k) * factorial(n - k));
-
-        System.out.printf("Количество сочетаний из %d элементов по %d = %d", elements.size(), k, c);
-        System.out.println();
-
-        Solution.genAll(elements, k, n);
+        }
+        return result;
+    }
+    public static Set<String> generate(int n) {
+        Set<String> result = new TreeSet<>();
+        if (n == 0) {
+            result.add("");
+        }
+        for (int i = 1; i <= n; ++i) {
+            for (String item : generate(n - i)) {
+                result.add(String.join("", Collections.nCopies(i, "(")) + String.join("", Collections.nCopies(i, ")")) + item);
+                result.add(String.join("", Collections.nCopies(i, "(")) + item + String.join("", Collections.nCopies(i, ")")));
+                result.add(item + String.join("", Collections.nCopies(i, "(")) + String.join("", Collections.nCopies(i, ")")));
+            }
+        }
+        return result;
     }
 }
