@@ -3,13 +3,7 @@ package ru.vsu.cs.Game;
 // Демонстрация работы цветов в Java
 
 import java.awt.*;
-import java.applet.*;
 
-/*
- * Для HTML, вставьте следующий код:
- * <applet code="ExampleWithColor" width=300 height=200>
- * </applet>
- */
 
 public class Colors{
 

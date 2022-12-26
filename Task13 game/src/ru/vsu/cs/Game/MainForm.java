@@ -2,6 +2,7 @@ package ru.vsu.cs.Game;
 
 import ru.vsu.cs.util.DrawUtils;
 import ru.vsu.cs.util.JTableUtils;
+import ru.vsu.cs.util.ParamsDialog;
 import ru.vsu.cs.util.SwingUtils;
 
 import java.awt.event.KeyEvent;
@@ -131,61 +132,58 @@ public class MainForm extends JFrame {
         });
     }
 
-//    private JMenuItem createMenuItem(String text, String shortcut, Character mnemonic, ActionListener listener) {
-//        JMenuItem menuItem = new JMenuItem(text);
-//        menuItem.addActionListener(listener);
-//        if (shortcut != null) {
-//            menuItem.setAccelerator(KeyStroke.getKeyStroke(shortcut.replace('+', ' ')));
-//        }
-//        if (mnemonic != null) {
-//            menuItem.setMnemonic(mnemonic);
-//        }
-//        return menuItem;
-//    }
-//
-//    private JMenuBar createMenuBar() {
-//        JMenuBar menuBarMain = new JMenuBar();
-//
-//        JMenu menuGame = new JMenu("Игра");
-//        menuBarMain.add(menuGame);
-//
-//        menuGame.add(createMenuItem("Параметры", "ctrl+P", null, e -> {
-//            dialogParams.updateView();
-//            dialogParams.setVisible(true);
-//        }));
-//        menuGame.addSeparator();
-//        menuGame.add(createMenuItem("Выход", "ctrl+X", null, e -> {
-//            System.exit(0);
-//        }));
-//
-//        JMenu menuView = new JMenu("Вид");
-//        menuBarMain.add(menuView);
-//        menuView.add(createMenuItem("Подогнать размер окна", null, null, e -> {
-//            updateWindowSize();
-//        }));
-//        menuView.addSeparator();
-//        SwingUtils.initLookAndFeelMenu(menuView);
-//
-//        JMenu menuHelp = new JMenu("Справка");
-//        menuBarMain.add(menuHelp);
-//        menuHelp.add(createMenuItem("Правила", "ctrl+R", null, e -> {
-//            SwingUtils.showInfoMessageBox("Здесь должно быть краткое описание правил ...", "Правила");
-//        }));
-//        menuHelp.add(createMenuItem("О программе", "ctrl+A", null, e -> {
-//            SwingUtils.showInfoMessageBox(
-//                    "Шаблон для создания игры" +
-//                            "\n\nАвтор: Соломатин Д.И." +
-//                            "\nE-mail: solomatin.cs.vsu.ru@gmail.com",
-//                    "О программе"
-//            );
-//        }));
-//        return menuBarMain;
-//    }
-
-    private void newGame() {
-        JTableUtils.resizeJTable(tableGameField, getSizeField(), getSizeField(), 0, 0);
-        updateView();
+    /*
+    private JMenuItem createMenuItem(String text, String shortcut, Character mnemonic, ActionListener listener) {
+        JMenuItem menuItem = new JMenuItem(text);
+        menuItem.addActionListener(listener);
+        if (shortcut != null) {
+            menuItem.setAccelerator(KeyStroke.getKeyStroke(shortcut.replace('+', ' ')));
+        }
+        if (mnemonic != null) {
+            menuItem.setMnemonic(mnemonic);
+        }
+        return menuItem;
     }
+
+    private JMenuBar createMenuBar() {
+        JMenuBar menuBarMain = new JMenuBar();
+
+        JMenu menuGame = new JMenu("Игра");
+        menuBarMain.add(menuGame);
+
+        menuGame.add(createMenuItem("Параметры", "ctrl+P", null, e -> {
+            dialogParams.updateView();
+            dialogParams.setVisible(true);
+        }));
+        menuGame.addSeparator();
+        menuGame.add(createMenuItem("Выход", "ctrl+X", null, e -> {
+            System.exit(0);
+        }));
+
+        JMenu menuView = new JMenu("Вид");
+        menuBarMain.add(menuView);
+        menuView.add(createMenuItem("Подогнать размер окна", null, null, e -> {
+            updateWindowSize();
+        }));
+        menuView.addSeparator();
+        SwingUtils.initLookAndFeelMenu(menuView);
+
+        JMenu menuHelp = new JMenu("Справка");
+        menuBarMain.add(menuHelp);
+        menuHelp.add(createMenuItem("Правила", "ctrl+R", null, e -> {
+            SwingUtils.showInfoMessageBox("Здесь должно быть краткое описание правил ...", "Правила");
+        }));
+        menuHelp.add(createMenuItem("О программе", "ctrl+A", null, e -> {
+            SwingUtils.showInfoMessageBox(
+                    "Шаблон для создания игры" +
+                            "\n\nАвтор: Соломатин Д.И." +
+                            "\nE-mail: solomatin.cs.vsu.ru@gmail.com",
+                    "О программе"
+            );
+        }));
+        return menuBarMain;
+    }
+
 
     private void updateWindowSize() {
         int menuSize = this.getJMenuBar() != null ? this.getJMenuBar().getHeight() : 0;
@@ -198,6 +196,14 @@ public class MainForm extends JFrame {
         this.setMaximumSize(null);
         this.setMinimumSize(null);
     }
+
+     */
+
+    private void newGame() {
+        JTableUtils.resizeJTable(tableGameField, getSizeField(), getSizeField(), 0, 0);
+        updateView();
+    }
+
     private Font font = null;
 
     private Font getFont(int size) {
