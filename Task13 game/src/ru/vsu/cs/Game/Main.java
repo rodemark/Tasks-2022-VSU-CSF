@@ -11,6 +11,7 @@ public class Main {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new MainForm().setVisible(true));
         }
+
     public static void main(String[] args) throws Exception {
         winMain();
     }

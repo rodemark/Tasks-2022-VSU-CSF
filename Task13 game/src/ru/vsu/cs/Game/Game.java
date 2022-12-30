@@ -39,6 +39,7 @@ public class Game {
 
     public static void newGame() {
         gameField = new int[getSizeField()][getSizeField()];
+
         createNewNumber();
         createNewNumber();
         score = 0;
@@ -56,6 +57,7 @@ public class Game {
             showInfoMessageBox("Все. Доигрался. Давай по новой.", "2048");
         }
     }
+
     public static int findMaxElemGameField(){
         int max = Integer.MIN_VALUE;
         for(int i = 0; i < SIDE; i++){

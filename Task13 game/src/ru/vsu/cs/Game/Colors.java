@@ -1,7 +1,5 @@
 package ru.vsu.cs.Game;
 
-// Демонстрация работы цветов в Java
-
 import java.awt.*;
 
 
